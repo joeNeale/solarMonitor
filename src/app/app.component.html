@@ -1,0 +1,72 @@
+<pre>
+  
+  SOLAR ────────┐   ┌─────── GRID
+  {{solisData.data.power | number: '1.3-3' }} kW      │   │        {{abs(solisData.data.psum) | number: '1.3-3'}} kW
+  {{(solisData.data.power / solisData.data.capacity) * 100 | number: '3.0-0'}} %         {{solarDir(solisData.data.power)}}   {{ powerDir(solisData.data.psum) }}        IN {{ solisData.data.gridPurchasedEnergy | number: '1.2-2' }} kWh
+  {{ solisData.data.dayEnergy | number: '1.2-2'  }} kWh     ┌┴───┴┐       EX {{ solisData.data.gridSellEnergy | number: '1.2-2' }} kWh
+               │     │
+               │     │
+               └┬───┬┘
+  BATTERY       {{ batteryDir(solisData.data.batteryPower) }}   │        HOUSE
+  {{ abs(solisData.data.batteryPower) | number: '1.3-3'       }} kW      │   │        {{ solisData.data.familyLoadPower | number: '1.3-3' }} kW
+  {{ solisData.data.batteryPercent | number: '3.0-0'   }} %  ───────┘   └──────► {{ solisData.data.homeLoadEnergy | number: '1.2-2' }} kWh
+</pre>
+
+<br>
+<!-- <table>
+  <tr>
+    <td>Solar</td>
+    <td>{{ solisData.data.power }} kW</td>
+  </tr>
+  <tr>
+    <td>Grid</td>
+    <td>{{ solisData.data.psum * -1}} kW</td>
+  </tr>
+  <tr>
+    <td>Battery</td>
+    <td>{{ solisData.data.batteryPower }} kW</td>
+  </tr>
+  <tr>
+    <td>Using</td>
+    <td>{{ solisData.data.familyLoadPower }} kW</td>
+  </tr>
+</table> -->
+<br>
+<p-progressBar [value]="solisData.data.batteryPercent"  [color]="getProgressBarColor(solisData.data.batteryPercent)" ></p-progressBar>
+<br>
+<!-- <table>
+  <tr>
+    <td>Yield</td>
+    <td>{{ solisData.data.dayEnergy | number: '1.2-2'  }} kWh</td>
+  </tr>
+  <tr>
+    <td>From Grid</td>
+    <td>{{ solisData.data.gridPurchasedEnergy | number: '1.2-2' }} kWh</td>
+  </tr>
+  <tr>
+    <td>To Grid</td>
+    <td>{{ solisData.data.gridSellEnergy | number: '1.2-2' }} kWh</td>
+  </tr>
+  <tr>
+    <td>Consumption </td>
+    <td>{{ solisData.data.homeLoadEnergy | number: '1.2-2' }} kWh</td>
+  </tr>
+</table> -->
+<br>
+<div>Updated {{ solisData.data.dataTimestamp | unixTime }} </div>
+
+<!-- <div>Solar: {{ solisData.data.power }} kW</div>
+<div>Grid: {{ solisData.data.psum * -1}} kW</div>
+<div>Battery: {{ solisData.data.batteryPower }} kW</div>
+<div>Using: {{ solisData.data.familyLoadPower }} kW</div>
+<div></div>
+<div>Battery {{ solisData.data.batteryPercent }}%</div>
+<p-progressBar [value]="solisData.data.batteryPercent"  [color]="getProgressBarColor(solisData.data.batteryPercent)" ></p-progressBar>
+<div></div>
+<div>Today</div>
+<div>Yield: {{ solisData.data.dayEnergy }} kWh</div>
+<div>From Grid: {{ solisData.data.gridPurchasedEnergy }} kWh</div>
+<div>To Grid: {{ solisData.data.gridSellEnergy }} kWh</div>
+<div>Consumption: {{ solisData.data.homeLoadEnergy }} kWh</div>
+<div></div>
+<div>Updated {{ solisData.data.dataTimestamp | unixTime }} </div> -->
